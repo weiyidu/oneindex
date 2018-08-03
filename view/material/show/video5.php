@@ -1,12 +1,15 @@
 <?php view::layout('layout')?>
 
+<?php 
+$item['thumb'] = onedrive::thumbnail($item['path']);
+?>
+
 <?php view::begin('content');?>
 <div class="mdui-container-fluid">
 	<br>
-	<center>
-	<audio src="<?php e($item['downloadUrl']);?>" controls autoplay style="width: 100%;"  poster="<?php @e($item['thumb'].'&width=176&height=176');?>">
-	</audio>
-	</center>
+	<video class="mdui-video-fluid mdui-center" preload controls poster="<?php @e($item['thumb']);?>">
+	  <source src="<?php e($item['downloadUrl']);?>" type="video/mp4">
+	</video>
 	<br>
 	<!-- 固定标签 -->
 	<div class="mdui-textfield">
@@ -15,7 +18,7 @@
 	</div>
 	<div class="mdui-textfield">
 	  <label class="mdui-textfield-label">引用地址</label>
-	  <textarea class="mdui-textfield-input"><audio src="<?php e($url);?>"></audio></textarea>
+	  <textarea class="mdui-textfield-input"><video><source src="<?php e($url);?>" type="video/mp4"></video></textarea>
 	</div>
 </div>
 <a href="<?php e($url);?>" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
